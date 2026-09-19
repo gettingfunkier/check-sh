@@ -1,0 +1,13 @@
+# program compiled by check.sh when testing
+prog
+
+# macOS folder metadata
+.DS_Store
+
+# editor backup and swap files
+*~
+*.swp
+
+# IDE settings folders (CLion, VS Code)
+.idea/
+.vscode/
