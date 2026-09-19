@@ -9,6 +9,7 @@
 #
 # Output: PASS or FAIL per test; for failures the diff is shown
 #   (< lines = test output, > lines = expected output)
+#   MISSING if a test has no matching .out file
 #
 # Note: -Werror turns warnings into errors, so code with warnings is never tested
 
@@ -29,10 +30,15 @@ gcc -std=c99 -Wall -pedantic -Werror "$1" -o prog || exit 1
 
 
 for t in "$TESTDIR"/*.in; do
-    if ./prog < "$t" | diff - "${t%.in}.out" > /dev/null; then
+    exp="${t%.in}.out"
+    if [ ! -f "$exp" ]; then
+        echo "MISSING $exp"
+        continue
+    fi
+    if ./prog < "$t" | diff - "$exp" > /dev/null; then
         echo "PASS $t"
     else
         echo "FAIL $t"
-        ./prog < "$t" | diff - "${t%.in}.out"
+        ./prog < "$t" | diff - "$exp"
     fi
 done

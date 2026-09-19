@@ -24,6 +24,4 @@ Then run:
 
     check.sh program.c
 
-Each test prints PASS or FAIL. For failures, the diff shows your output (`<`)
-against the expected output (`>`). A missing final newline shows up as
-`\ No newline at end of file`.
+Each test prints PASS or FAIL. For failures, the diff shows your output (`<`) against the expected output (`>`). A missing final newline shows up as `\ No newline at end of file`.
